@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.allopen") version "1.6.10"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.3.2"
+    id("io.micronaut.aot") version "3.4.0"
 }
 
 version = "0.1"
@@ -57,6 +58,15 @@ micronaut {
     processing {
         incremental(true)
         annotations("com.example.*")
+    }
+    aot {
+        version.set("1.1.0")
+        optimizeServiceLoading.set(true)
+        convertYamlToJava.set(true)
+        precomputeOperations.set(true)
+        cacheEnvironment.set(true)
+        optimizeClassLoading.set(true)
+        deduceEnvironment.set(true)
     }
 }
 
